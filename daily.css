@@ -1,15 +1,103 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>styles.css</title>
-  <link rel="stylesheet" href="./style.css">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
+body {
+  background: #fffbe7;
+  color: #333;
+}
 
-<!-- partial -->
-  
-</body>
-</html>
+header {
+  background: #ffcd3c;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.5em;
+  color: #ff5733;
+}
+
+header p {
+  font-size: 1.2em;
+  margin-top: 5px;
+}
+
+.story-container {
+  padding: 20px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.story-card {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.story-card:hover {
+  transform: scale(1.03);
+}
+
+.story-card h2 {
+  font-size: 1.5em;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.story-card p {
+  margin-bottom: 15px;
+}
+
+.read-btn,
+.share-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.read-btn {
+  background-color: #ff6f61;
+  color: white;
+}
+
+.share-btn {
+  background-color: #4cd137;
+  color: white;
+}
+
+/* KEEPING THIS FROM ORIGINAL — DO NOT CHANGE */
+.like-btn {
+  padding: 8px 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background-color: #ff7675;
+  color: white;
+}
+
+.like-btn:hover {
+  background-color: #ff4d4d;
+  transform: scale(1.05);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #f1c40f;
+  margin-top: 30px;
+}
+
