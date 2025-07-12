@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ComWors - Language Select</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>😂 ComWors</h1>
+    <p>Please choose your preferred language to read short comedy stories:</p>
+    
+    <div class="btn-group">
+      <button onclick="goTo('shorts.html')">অসমীয়া</button>
+      <button onclick="goTo('shorthn.html')">हिन्दी</button>
+      <button onclick="goTo('shorteng.html')">English</button>
+    </div>
+  </div>
+
+  <script>
+    function goTo(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>
