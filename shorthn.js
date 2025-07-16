@@ -1,3 +1,4 @@
+
 const saveBtn = document.getElementById("save-btn");
 const storySource = document.getElementById("story-source");
 const storyList = document.getElementById("story-list");
@@ -21,10 +22,10 @@ saveBtn.addEventListener("click", () => {
 
   let stories = JSON.parse(localStorage.getItem("comwors_stories")) || [];
 
-  // Avoid duplicate
+  // Duplicate check
   const exists = stories.find(s => s.title === title && s.text === text);
   if (exists) {
-    alert("Story already saved.");
+    alert("This story is already saved.");
     return;
   }
 
@@ -32,10 +33,10 @@ saveBtn.addEventListener("click", () => {
   localStorage.setItem("comwors_stories", JSON.stringify(stories));
 
   loadStories();
-  saveBtn.style.display = "none"; // Hide button after saving
+  saveBtn.style.display = "none"; // Hide Save button
 });
 
-// Show save button again if story changed
+// Reactivate Save button when story changed
 const observer = new MutationObserver(() => {
   saveBtn.style.display = "inline-block";
 });
