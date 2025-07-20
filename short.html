@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ComWors - Language Select</title>
+  <title>ComWors - Short Stories 🤪</title>
   <link rel="stylesheet" href="short.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>😂 ComWors</h1>
-    <p>Please choose your preferred language to read short comedy stories:</p>
-    
-    <div class="btn-group">
-      <button onclick="goTo('shorts.html')">অসমীয়া</button>
-      <button onclick="goTo('shorthn.html')">हिन्दी</button>
-      <button onclick="goTo('shorteng.html')">English</button>
-    </div>
-  </div>
+  <header>
+    <h1>🤣 ComWors - Fun Short Stories</h1>
+    <select id="languageSelect">
+      <option value="hindi">Hindi</option>
+      <option value="english">English</option>
+      <option value="assamese">Assamese</option>
+    </select>
+    <input type="text" id="search" placeholder="🔍 Search for a laugh..." />
+  </header>
 
-  <script>
-    function goTo(page) {
-      window.location.href = page;
-    }
-  </script>
+  <main>
+    <section id="storyList"></section>
+    <button id="saveBtn" onclick="saveStory()">💾 Save Story</button>
+  </main>
+
+  <script src="short.js"></script>
 </body>
 </html>
