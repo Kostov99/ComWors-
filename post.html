@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📝 ComWors - Post a Story</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    textarea {
+      width: 90%;
+      height: 200px;
+      font-size: 18px;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+
+    .btn-container {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 16px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .long {
+      background-color: #0288d1;
+      color: white;
+    }
+
+    .short {
+      background-color: #e91e63;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>📜 Write & Post Your Story</h1>
+  <textarea id="storyInput" placeholder="Write your story here..."></textarea>
+  <div class="btn-container">
+    <button class="long" onclick="postStory('long')">📘 Post to Long Stories</button>
+    <button class="short" onclick="postStory('short')">📗 Post to Short Stories</button>
+  </div>
+
+  <script>
+    function postStory(type) {
+      const text = document.getElementById("storyInput").value.trim();
+      if (!text) {
+        alert("Please write a story first!");
+        return;
+      }
+      const story = {
+        text: text,
+        id: Date.now(),
+      };
+
+      // Store in kpstorage under type
+      const key = type + '_posts';
+      const stories = JSON.parse(localStorage.getItem(key) || '[]');
+      stories.push(story);
+      localStorage.setItem(key, JSON.stringify(stories));
+
+      alert("✅ Your story was saved to " + type + " stories!");
+      document.getElementById("storyInput").value = "";
+    }
+  </script>
+</body>
+</html>
