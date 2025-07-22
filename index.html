@@ -25,6 +25,7 @@
       margin-bottom: 10px;
       text-shadow: 3px 3px 8px #ff4081;
       animation: float 2s ease-in-out infinite;
+      cursor: pointer;
     }
 
     p.description {
@@ -125,11 +126,14 @@
     }
   </style>
 </head>
+
 <body>
-  <h1>ComWors</h1>
+  <h1 id="title">ComWors</h1>
 
   <p class="description">
-    Welcome to <strong>ComWors</strong> – your daily dose of laughter! Whether you love hilarious long tales, quick witty shorts, or fresh daily jokes, we’ve got something to make you laugh till your stomach hurts! Dive into a world of fun and escape into stories that tickle your funny bone!
+    Welcome to <strong>ComWors</strong> – your daily dose of laughter! Whether you love hilarious long tales,
+    quick witty shorts, or fresh daily jokes, we’ve got something to make you laugh till your stomach hurts!
+    Dive into a world of fun and escape into stories that tickle your funny bone!
   </p>
 
   <div class="eye-container">
@@ -144,6 +148,7 @@
   </div>
 
   <script>
+    // Eye tracking
     const eyes = [document.getElementById("eye1"), document.getElementById("eye2")];
     const pupils = [document.getElementById("pupil1"), document.getElementById("pupil2")];
 
@@ -159,6 +164,19 @@
         const pupil = pupils[index];
         pupil.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
       });
+    });
+
+    // Hidden navigation to post.html
+    let clickCount = 0;
+    let lastClickTime = 0;
+    const title = document.getElementById("title");
+
+    title.addEventListener("click", () => {
+      const now = Date.now();
+      if (now - lastClickTime > 3000) clickCount = 0; // reset if too slow
+      lastClickTime = now;
+      clickCount++;
+      if (clickCount >= 100) window.location.href = "post.html";
     });
   </script>
 </body>
