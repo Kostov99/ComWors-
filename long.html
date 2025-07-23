@@ -1,74 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComWors - Long Stories 🧠</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f5f5f5;
-    }
-    h1 {
-      text-align: center;
-      color: #4a148c;
-    }
-    .search-box {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .search-box input {
-      width: 80%;
-      padding: 10px;
-      font-size: 16px;
-    }
-    .story {
-      background-color: #fff;
-      padding: 15px;
-      margin: 10px auto;
-      max-width: 800px;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      white-space: pre-wrap;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ComWors - Long Story 📚</title>
+  <link rel="stylesheet" href="long.css" />
 </head>
 <body>
-  <h1>📖 ComWors - Long Stories</h1>
+  <header>
+    <h1>📚 ComWors - Long Stories</h1>
+    <select id="languageSelect">
+      <option value="hindi">Hindi</option>
+      <option value="english">English</option>
+      <option value="assamese">Assamese</option>
+    </select>
+    <input type="text" id="search" placeholder="🔍 Search stories..." />
+  </header>
 
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search stories...">
-  </div>
+  <main>
+    <section id="storyList">
+      <!-- HINDI -->
+      <div class="story" data-lang="hindi">
+        <p>एक समय की बात है, बबलू टाइम मशीन लेकर 3025 पहुँच गया जहां उसे उड़ती चाय और रोबोट मिले। अब उसका मिशन है वापस आना।</p>
+        <small><a href="?lang=hindi&id=1" target="_blank">🔗 Share</a></small>
+      </div>
+      <div class="story" data-lang="hindi">
+        <p>गुड्डू ने गलती से पिज़्ज़ा को वॉशिंग मशीन में डाल दिया... और अब पूरी गली इटालियन महक से भर गई है!</p>
+        <small><a href="?lang=hindi&id=2" target="_blank">🔗 Share</a></small>
+      </div>
 
-  <div id="stories"></div>
+      <!-- ENGLISH -->
+      <div class="story" data-lang="english">
+        <p>Once upon a time, a boy built a time machine from old fans and junk. It actually worked... but only sent him to Monday again.</p>
+        <small><a href="?lang=english&id=1" target="_blank">🔗 Share</a></small>
+      </div>
+      <div class="story" data-lang="english">
+        <p>Jenny invented a language only cats understand. Now her cat gives her lectures on history.</p>
+        <small><a href="?lang=english&id=2" target="_blank">🔗 Share</a></small>
+      </div>
 
-  <script>
-    function loadStories() {
-      const container = document.getElementById('stories');
-      const data = localStorage.getItem('kpstorage_long_posts');
-      const stories = data ? JSON.parse(data) : [];
-      container.innerHTML = '';
-      stories.forEach(story => {
-        const div = document.createElement('div');
-        div.className = 'story';
-        div.textContent = story;
-        container.appendChild(div);
-      });
-    }
+      <!-- ASSAMESE -->
+      <div class="story" data-lang="assamese">
+        <p>একদিন, ৰাহুলে এটা ঘড়ীতকৈ বেছি শব্দ কৰা টাইম মেচিন বনালে। কিন্তু সেয়া কেৱল বিছনালৈ ঘূৰাই লৈ যাব পাৰে!</p>
+        <small><a href="?lang=assamese&id=1" target="_blank">🔗 Share</a></small>
+      </div>
+      <div class="story" data-lang="assamese">
+        <p>ডিম্পীয়ে ৰোবট বানালে চাহ বনাবলৈ, কিন্তু ই ৰাতিপুৱা চাহৰ লগত কবিতা দিওঁ বুলি ভাবিছে।</p>
+        <small><a href="?lang=assamese&id=2" target="_blank">🔗 Share</a></small>
+      </div>
+    </section>
+  </main>
 
-    document.getElementById('searchInput').addEventListener('input', function() {
-      const query = this.value.toLowerCase();
-      const stories = document.querySelectorAll('.story');
-      stories.forEach(story => {
-        const text = story.textContent.toLowerCase();
-        story.style.display = text.includes(query) ? 'block' : 'none';
-      });
-    });
-
-    loadStories();
-  </script>
+  <script src="long.js"></script>
 </body>
 </html>
