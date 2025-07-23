@@ -56,3 +56,17 @@ h1 {
   color: #d84315;
   font-weight: bold;
 }
+.copyBtn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 15px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.copyBtn:hover {
+  background-color: #388e3c;
+}
