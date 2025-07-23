@@ -31,9 +31,29 @@ function loadFromURL() {
   }
 }
 
+// Copy link function
+function setupCopyButtons() {
+  const buttons = document.querySelectorAll('.copyBtn');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const story = button.parentElement;
+      const id = story.getAttribute('data-id');
+      const lang = story.getAttribute('data-lang');
+      const link = `${window.location.origin}${window.location.pathname}?id=${id}&lang=${lang}`;
+      
+      navigator.clipboard.writeText(link).then(() => {
+        alert("✅ Link copied to clipboard!");
+      }).catch(() => {
+        alert("❌ Failed to copy link.");
+      });
+    });
+  });
+}
+
+// Event listeners
 languageSelect.addEventListener('change', filterStories);
 searchInput.addEventListener('input', filterStories);
 
-// Initial load
+// Initial Load
 loadFromURL();
-
+setupCopyButtons();
