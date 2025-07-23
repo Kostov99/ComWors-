@@ -1,27 +1,121 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ComWors - Short Stories 🤪</title>
-  <link rel="stylesheet" href="short.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ComWors - Short Stories 🌍</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    input, textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      margin-right: 5px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🤣 ComWors - Fun Short Stories</h1>
-    <select id="languageSelect">
-      <option value="hindi">Hindi</option>
-      <option value="english">English</option>
-      <option value="assamese">Assamese</option>
-    </select>
-    <input type="text" id="search" placeholder="🔍 Search for a laugh..." />
-  </header>
+  <h1>📖 ComWors - Short Stories</h1>
+  <p>Write and save your short stories using KPStorage</p>
 
-  <main>
-    <section id="storyList"></section>
-    <button id="saveBtn" onclick="saveStory()">💾 Save Story</button>
-  </main>
+  <input type="text" id="title" placeholder="Story Title" />
+  <textarea id="content" placeholder="Write your short story..."></textarea>
+  <button onclick="saveToKPStorage()">Save Story</button>
+  <button onclick="loadKPStorage()">Load My Stories</button>
 
-  <script src="short.js"></script>
+  <h2>🗂️ My Stories</h2>
+  <ul id="postList"></ul>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT.firebaseio.com",
+      projectId: "YOUR_PROJECT",
+      storageBucket: "YOUR_PROJECT.appspot.com",
+      messagingSenderId: "SENDER_ID",
+      appId: "APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
+    const userId = localStorage.getItem("comwors_uid") || `cw_${Date.now()}`;
+    localStorage.setItem("comwors_uid", userId);
+
+    function getSizeInKB(obj) {
+      return new Blob([JSON.stringify(obj)]).size / 1024;
+    }
+
+    function saveToKPStorage() {
+      const title = document.getElementById("title").value.trim();
+      const content = document.getElementById("content").value.trim();
+      if (!title || !content) return alert("Please fill in both fields.");
+
+      const ref = db.ref(`comwors/${userId}/${title}`);
+      const data = { content, createdAt: new Date().toISOString() };
+
+      db.ref(`comwors/${userId}`).once('value', snapshot => {
+        const existing = snapshot.val() || {};
+        const totalSize = getSizeInKB(existing) + getSizeInKB(data);
+        if (totalSize > 100000) {
+          alert("❌ Storage limit exceeded (100MB)");
+        } else {
+          ref.set(data).then(() => {
+            alert("✅ Story saved globally!");
+            document.getElementById("title").value = "";
+            document.getElementById("content").value = "";
+            loadKPStorage();
+          });
+        }
+      });
+    }
+
+    function loadKPStorage() {
+      const postList = document.getElementById("postList");
+      postList.innerHTML = "Loading...";
+      db.ref(`comwors/${userId}`).once('value', snapshot => {
+        const stories = snapshot.val();
+        postList.innerHTML = "";
+        if (!stories) return postList.innerHTML = "<li>No stories found.</li>";
+        for (const [title, { content }] of Object.entries(stories)) {
+          const li = document.createElement("li");
+          li.innerHTML = `<strong>${title}</strong><br>${content.substring(0, 150)}...`;
+          postList.appendChild(li);
+        }
+      });
+    }
+
+    window.onload = loadKPStorage;
+  </script>
 </body>
 </html>
