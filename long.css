@@ -69,3 +69,29 @@ button:hover {
   text-align: right;
   margin-top: 10px;
 }
+button {
+  margin-top: 12px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.5);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
