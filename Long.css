@@ -1,0 +1,71 @@
+body {
+  font-family: "Georgia", serif;
+  background: #fff8e1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+}
+
+header {
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  padding: 20px;
+  box-shadow: 0 5px 10px #aaa;
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  color: #0d47a1;
+}
+
+#search, #languageSelect {
+  width: 80%;
+  padding: 12px;
+  margin: 10px auto;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 2px solid #0d47a1;
+  display: block;
+  background: #e3f2fd;
+}
+
+button {
+  padding: 14px 30px;
+  font-size: 16px;
+  background: #0288d1;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: none;
+}
+
+button:hover {
+  background: #01579b;
+}
+
+#storyList {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.story {
+  border: 2px solid #90caf9;
+  border-radius: 10px;
+  margin: 15px auto;
+  padding: 20px;
+  width: 85%;
+  background: #e3f2fd;
+  box-shadow: 3px 3px 8px #888;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.story small {
+  display: block;
+  text-align: right;
+  margin-top: 10px;
+}
