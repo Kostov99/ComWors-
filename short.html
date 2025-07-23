@@ -5,59 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ComWors - Fun Short Stories 🤪</title>
   <link rel="stylesheet" href="short.css" />
-  <style>
-    body {
-      font-family: "Comic Sans MS", cursive, sans-serif;
-      background: #fdf6e3;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: #333;
-    }
-    header {
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
-      padding: 20px;
-      box-shadow: 0 5px 10px #888;
-    }
-    h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #4a148c;
-      text-shadow: 1px 1px 1px white;
-    }
-    #search, #languageSelect {
-      width: 80%;
-      padding: 12px;
-      margin: 10px auto;
-      font-size: 16px;
-      border-radius: 20px;
-      border: 2px dashed #ff4081;
-      display: block;
-      background: #fff0f5;
-    }
-    #storyList {
-      margin-top: 20px;
-      padding: 20px;
-    }
-    .story {
-      border: 3px dotted #ff9800;
-      border-radius: 15px;
-      margin: 15px auto;
-      padding: 15px;
-      width: 85%;
-      background: #ffffcc;
-      box-shadow: 3px 3px 10px #aaa;
-      font-size: 18px;
-    }
-    .story p::before {
-      content: "🧠 ";
-    }
-    .story small a {
-      text-decoration: none;
-      color: #d84315;
-      font-weight: bold;
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -100,48 +47,8 @@
     </section>
   </main>
 
-  <script>
-    const searchInput = document.getElementById('search');
-    const languageSelect = document.getElementById('languageSelect');
-    const stories = document.querySelectorAll('.story');
-
-    function filterStories() {
-      const lang = languageSelect.value;
-      const search = searchInput.value.toLowerCase();
-
-      stories.forEach(story => {
-        const storyLang = story.getAttribute('data-lang');
-        const text = story.textContent.toLowerCase();
-        const match = storyLang === lang && text.includes(search);
-        story.style.display = match ? 'block' : 'none';
-      });
-    }
-
-    // Load specific story from URL if shared
-    function loadFromURL() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const storyId = urlParams.get('id');
-      const lang = urlParams.get('lang');
-
-      if (storyId && lang) {
-        languageSelect.value = lang;
-        searchInput.value = ''; // Clear search
-        stories.forEach(story => {
-          const match = story.getAttribute('data-id') === storyId;
-          story.style.display = match ? 'block' : 'none';
-        });
-      } else {
-        filterStories();
-      }
-    }
-
-    // Event listeners
-    languageSelect.addEventListener('change', filterStories);
-    searchInput.addEventListener('input', filterStories);
-
-    // Initial Load
-    loadFromURL();
-  </script>
+  <script src="short.js"></script>
 </body>
 </html>
+
 
