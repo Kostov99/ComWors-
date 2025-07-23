@@ -31,22 +31,6 @@ h1 {
   background: #fff0f5;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 16px;
-  background: #ff5722;
-  border: none;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  margin: 20px auto;
-  display: none;
-}
-
-button:hover {
-  background: #e64a19;
-}
-
 #storyList {
   margin-top: 20px;
   padding: 20px;
