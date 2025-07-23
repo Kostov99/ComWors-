@@ -1,121 +1,147 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComWors - Short Stories 🌍</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ComWors - Fun Short Stories 🤪</title>
+  <link rel="stylesheet" href="short.css" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-    }
-    input, textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 10px;
-    }
-    button {
-      padding: 10px 15px;
-      margin-right: 5px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    ul {
-      list-style-type: none;
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      background: #fdf6e3;
+      margin: 0;
       padding: 0;
+      text-align: center;
+      color: #333;
     }
-    li {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      background: #f9f9f9;
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      padding: 20px;
+      box-shadow: 0 5px 10px #888;
+    }
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #4a148c;
+      text-shadow: 1px 1px 1px white;
+    }
+    #search, #languageSelect {
+      width: 80%;
+      padding: 12px;
+      margin: 10px auto;
+      font-size: 16px;
+      border-radius: 20px;
+      border: 2px dashed #ff4081;
+      display: block;
+      background: #fff0f5;
+    }
+    #storyList {
+      margin-top: 20px;
+      padding: 20px;
+    }
+    .story {
+      border: 3px dotted #ff9800;
+      border-radius: 15px;
+      margin: 15px auto;
+      padding: 15px;
+      width: 85%;
+      background: #ffffcc;
+      box-shadow: 3px 3px 10px #aaa;
+      font-size: 18px;
+    }
+    .story p::before {
+      content: "🧠 ";
+    }
+    .story small a {
+      text-decoration: none;
+      color: #d84315;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>📖 ComWors - Short Stories</h1>
-  <p>Write and save your short stories using KPStorage</p>
+  <header>
+    <h1>🤣 ComWors - Fun Short Stories</h1>
+    <select id="languageSelect">
+      <option value="hindi">Hindi</option>
+      <option value="english">English</option>
+      <option value="assamese">Assamese</option>
+    </select>
+    <input type="text" id="search" placeholder="🔍 Search for a laugh..." />
+  </header>
 
-  <input type="text" id="title" placeholder="Story Title" />
-  <textarea id="content" placeholder="Write your short story..."></textarea>
-  <button onclick="saveToKPStorage()">Save Story</button>
-  <button onclick="loadKPStorage()">Load My Stories</button>
-
-  <h2>🗂️ My Stories</h2>
-  <ul id="postList"></ul>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <main>
+    <section id="storyList">
+      <!-- All Hardcoded Stories Here -->
+      <div class="story" data-lang="hindi" data-id="h1">
+        <p>एक बार की बात है, एक बकरी बस में चढ़ गई और conductor से पूछा – 'मेहंदी लगे हाथों से ticket फाड़ सकते हो?' 🐐🤣</p>
+        <small><a href="?id=h1&lang=hindi" target="_blank">🔗 Share Story</a></small>
+      </div>
+      <div class="story" data-lang="hindi" data-id="h2">
+        <p>पप्पू – मम्मी मैं शादी करूँगा! मम्मी – तमीज़ से! पप्पू – मम्मी मैं शादी करूंगा प्लीज़! 😂</p>
+        <small><a href="?id=h2&lang=hindi" target="_blank">🔗 Share Story</a></small>
+      </div>
+      <div class="story" data-lang="english" data-id="e1">
+        <p>Why did the scarecrow win an award? Because he was outstanding in his field! 🌾😂</p>
+        <small><a href="?id=e1&lang=english" target="_blank">🔗 Share Story</a></small>
+      </div>
+      <div class="story" data-lang="english" data-id="e2">
+        <p>Doctor: You are overweight. Patient: I want a second opinion. Doctor: You’re also ugly. 💊🤣</p>
+        <small><a href="?id=e2&lang=english" target="_blank">🔗 Share Story</a></small>
+      </div>
+      <div class="story" data-lang="assamese" data-id="a1">
+        <p>এজন মানুহ ৰে ষ্টেচিউত পইচা পেলালে... ষ্টেচিউয়ে কলে - ময় এখন ATM নহয় ভাই! 🪙🤣</p>
+        <small><a href="?id=a1&lang=assamese" target="_blank">🔗 Share Story</a></small>
+      </div>
+      <div class="story" data-lang="assamese" data-id="a2">
+        <p>শিৱদেউ এতিয়া gym জয়... গৰুয়ে কৈছে: ভাত নাই, গা গঢ়ো! 🐮💪</p>
+        <small><a href="?id=a2&lang=assamese" target="_blank">🔗 Share Story</a></small>
+      </div>
+    </section>
+  </main>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT.firebaseio.com",
-      projectId: "YOUR_PROJECT",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "SENDER_ID",
-      appId: "APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    const searchInput = document.getElementById('search');
+    const languageSelect = document.getElementById('languageSelect');
+    const stories = document.querySelectorAll('.story');
 
-    const userId = localStorage.getItem("comwors_uid") || `cw_${Date.now()}`;
-    localStorage.setItem("comwors_uid", userId);
+    function filterStories() {
+      const lang = languageSelect.value;
+      const search = searchInput.value.toLowerCase();
 
-    function getSizeInKB(obj) {
-      return new Blob([JSON.stringify(obj)]).size / 1024;
-    }
-
-    function saveToKPStorage() {
-      const title = document.getElementById("title").value.trim();
-      const content = document.getElementById("content").value.trim();
-      if (!title || !content) return alert("Please fill in both fields.");
-
-      const ref = db.ref(`comwors/${userId}/${title}`);
-      const data = { content, createdAt: new Date().toISOString() };
-
-      db.ref(`comwors/${userId}`).once('value', snapshot => {
-        const existing = snapshot.val() || {};
-        const totalSize = getSizeInKB(existing) + getSizeInKB(data);
-        if (totalSize > 100000) {
-          alert("❌ Storage limit exceeded (100MB)");
-        } else {
-          ref.set(data).then(() => {
-            alert("✅ Story saved globally!");
-            document.getElementById("title").value = "";
-            document.getElementById("content").value = "";
-            loadKPStorage();
-          });
-        }
+      stories.forEach(story => {
+        const storyLang = story.getAttribute('data-lang');
+        const text = story.textContent.toLowerCase();
+        const match = storyLang === lang && text.includes(search);
+        story.style.display = match ? 'block' : 'none';
       });
     }
 
-    function loadKPStorage() {
-      const postList = document.getElementById("postList");
-      postList.innerHTML = "Loading...";
-      db.ref(`comwors/${userId}`).once('value', snapshot => {
-        const stories = snapshot.val();
-        postList.innerHTML = "";
-        if (!stories) return postList.innerHTML = "<li>No stories found.</li>";
-        for (const [title, { content }] of Object.entries(stories)) {
-          const li = document.createElement("li");
-          li.innerHTML = `<strong>${title}</strong><br>${content.substring(0, 150)}...`;
-          postList.appendChild(li);
-        }
-      });
+    // Load specific story from URL if shared
+    function loadFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const storyId = urlParams.get('id');
+      const lang = urlParams.get('lang');
+
+      if (storyId && lang) {
+        languageSelect.value = lang;
+        searchInput.value = ''; // Clear search
+        stories.forEach(story => {
+          const match = story.getAttribute('data-id') === storyId;
+          story.style.display = match ? 'block' : 'none';
+        });
+      } else {
+        filterStories();
+      }
     }
 
-    window.onload = loadKPStorage;
+    // Event listeners
+    languageSelect.addEventListener('change', filterStories);
+    searchInput.addEventListener('input', filterStories);
+
+    // Initial Load
+    loadFromURL();
   </script>
 </body>
 </html>
+
