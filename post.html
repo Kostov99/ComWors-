@@ -55,37 +55,22 @@
     button:hover {
       opacity: 0.9;
     }
+
+    p {
+      color: pink;
+    }
+      
+      
   </style>
 </head>
 <body>
-  <h1>📜 Write & Post Your Story</h1>
-  <textarea id="storyInput" placeholder="Write your story here..."></textarea>
-  <div class="btn-container">
+  <h1>ComWors</h1>
+  <p>   website where you can read comady stories.  The special feature of this
+    website is that you can read comady stories within 100 
+    words, long comady stories and jokes.</p>
+  
     <button class="long" onclick="postStory('long')">📘 Post to Long Stories</button>
     <button class="short" onclick="postStory('short')">📗 Post to Short Stories</button>
   </div>
-
-  <script>
-    function postStory(type) {
-      const text = document.getElementById("storyInput").value.trim();
-      if (!text) {
-        alert("Please write a story first!");
-        return;
-      }
-      const story = {
-        text: text,
-        id: Date.now(),
-      };
-
-      // Store in kpstorage under type
-      const key = type + '_posts';
-      const stories = JSON.parse(localStorage.getItem(key) || '[]');
-      stories.push(story);
-      localStorage.setItem(key, JSON.stringify(stories));
-
-      alert("✅ Your story was saved to " + type + " stories!");
-      document.getElementById("storyInput").value = "";
-    }
-  </script>
 </body>
 </html>
