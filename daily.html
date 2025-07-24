@@ -1,64 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>daily.html</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ComWors - Comedy Story App</title>
+  <title>ComWors - कॉमेडी स्टोरी</title>
   <link rel="stylesheet" href="daily.css" />
 </head>
 <body>
   <header>
     <h1>😂 ComWors</h1>
-    <p>Your daily dose of laughter!</p>
+    <p>हर दिन की हंसी की खुराक!</p>
+
+    <!-- भाषा बदलने का ड्रॉपडाउन -->
+    <div class="language-selector">
+      <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="as">অসমীয়া</option>
+        <option value="bn">বাংলা</option>
+      </select>
+    </div>
   </header>
 
+  <!-- कहानियाँ -->
   <main class="story-container">
     <div class="story-card">
-      <h2>😜 The Lost Chapal</h2>
-      <p>Ramu lost his slippers in the temple. But guess where he found them... on a cow!</p>
-      <div class="button-group">
-        <button class="like-btn">👍 Like <span class="count">0</span></button>
-        <button class="share-btn">📤 Share</button>
-      </div>
+      <h2>😜 खो गई चप्पल</h2>
+      <p>रामू की चप्पल मंदिर में खो गई थी। लेकिन मिली कहाँ? एक गाय के पैरों में!</p>
     </div>
 
     <div class="story-card">
-      <h2>😂 The Talking Auto</h2>
-      <p>An auto-rickshaw starts giving relationship advice to passengers. Is it AI or just Delhi magic?</p>
-      <div class="button-group">
-        <button class="like-btn">👍 Like <span class="count">0</span></button>
-        <button class="share-btn">📤 Share</button>
-      </div>
+      <h2>😂 बातूनी ऑटो</h2>
+      <p>एक ऑटो-रिक्शा यात्रियों को रिलेशनशिप की सलाह देने लगता है। AI है या दिल्ली का जादू?</p>
     </div>
 
     <div class="story-card">
-      <h2>🤣 Mama’s Secret Recipe</h2>
-      <p>Mama told us the biryani has a secret ingredient. Spoiler: It’s toothpaste.</p>
-      <div class="button-group">
-        <button class="like-btn">👍 Like <span class="count">0</span></button>
-        <button class="share-btn">📤 Share</button>
-      </div>
+      <h2>🤣 मम्मी की सीक्रेट रेसिपी</h2>
+      <p>मम्मी बोली बिरयानी में खास चीज़ है... बाद में पता चला वो टूथपेस्ट था!</p>
     </div>
   </main>
 
+  <!-- फूटर -->
   <footer>
-    <p>© 2025 ComWors. Stay funny, stay happy!</p>
+    <p>© 2025 ComWors. हँसते रहो, मस्त रहो!</p>
   </footer>
 
   <script src="daily.js"></script>
 </body>
 </html>
-<!-- partial -->
-  
-</body>
-</html>
+
