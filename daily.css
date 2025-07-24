@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +16,7 @@ header {
   padding: 20px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 header h1 {
@@ -25,6 +27,21 @@ header h1 {
 header p {
   font-size: 1.2em;
   margin-top: 5px;
+}
+
+.language-selector {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.language-selector select {
+  padding: 6px 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: none;
+  background-color: #ff6f61;
+  color: white;
 }
 
 .story-container {
@@ -56,48 +73,9 @@ header p {
   margin-bottom: 15px;
 }
 
-.read-btn,
-.share-btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-right: 10px;
-}
-
-.read-btn {
-  background-color: #ff6f61;
-  color: white;
-}
-
-.share-btn {
-  background-color: #4cd137;
-  color: white;
-}
-
-/* KEEPING THIS FROM ORIGINAL — DO NOT CHANGE */
-.like-btn {
-  padding: 8px 15px;
-  font-size: 0.95rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  background-color: #ff7675;
-  color: white;
-}
-
-.like-btn:hover {
-  background-color: #ff4d4d;
-  transform: scale(1.05);
-}
-
 footer {
   text-align: center;
   padding: 15px;
   background: #f1c40f;
   margin-top: 30px;
 }
-
