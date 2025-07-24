@@ -1,23 +1,6 @@
-// Like button functionality
-const likeButtons = document.querySelectorAll(".like-btn");
+document.getElementById("languageSelect").addEventListener("change", function () {
+  const selectedLang = this.value;
+  alert("भाषा बदली गई: " + selectedLang);
 
-likeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const countSpan = button.querySelector(".count");
-    let count = parseInt(countSpan.textContent);
-    count += 1;
-    countSpan.textContent = count;
-    button.disabled = true; // prevent multiple likes
-    button.style.opacity = 0.6;
-  });
+  // यहाँ पर भविष्य में आप अलग-अलग भाषाओं की कहानियाँ लोड कर सकते हैं।
 });
-
-// Share button functionality (dummy alert)
-const shareButtons = document.querySelectorAll(".share-btn");
-
-shareButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    alert("Story shared! 📤");
-  });
-});
-
