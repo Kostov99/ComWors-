@@ -1,6 +1,19 @@
+// भाषा बदलने पर संबंधित स्टोरीज़ दिखाओ
 document.getElementById("languageSelect").addEventListener("change", function () {
-  const selectedLang = this.value;
-  alert("भाषा बदली गई: " + selectedLang);
+  const lang = this.value;
 
-  // यहाँ पर भविष्य में आप अलग-अलग भाषाओं की कहानियाँ लोड कर सकते हैं।
+  // सभी story-container को छुपाओ
+  document.getElementById("en-stories").style.display = "none";
+  document.getElementById("hi-stories").style.display = "none";
+  document.getElementById("as-stories").style.display = "none";
+
+  // चुनी गई भाषा का सेक्शन दिखाओ
+  if (lang === "en") {
+    document.getElementById("en-stories").style.display = "grid";
+  } else if (lang === "hi") {
+    document.getElementById("hi-stories").style.display = "grid";
+  } else if (lang === "as") {
+    document.getElementById("as-stories").style.display = "grid";
+  }
 });
+
