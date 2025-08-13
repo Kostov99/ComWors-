@@ -43,6 +43,7 @@ button {
 
 button:hover {
   background: #01579b;
+  text-decoration: none;
 }
 
 #storyList {
@@ -70,7 +71,3 @@ button:hover {
 }
 
 
-h3{
-  text-decoration:none;
-  background-color: pink;
-}
