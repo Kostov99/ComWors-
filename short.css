@@ -1,4 +1,4 @@
-body {
+ body {
   font-family: "Georgia", serif;
   background: #fff8e1;
   margin: 0;
@@ -69,5 +69,29 @@ button:hover {
   text-align: right;
   margin-top: 10px;
 }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, #66BB6A, #388E3C);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
 
 
