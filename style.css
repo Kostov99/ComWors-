@@ -44,18 +44,12 @@ button {
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.btn {
     padding: 14px 30px;
     font-size: 16px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: 0.3s;
-}
-
-.btn-primary {
     background: #ff5722;
     color: #fff;
 }
