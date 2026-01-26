@@ -39,7 +39,7 @@ header {
     line-height: 1.6;
 }
 
-.buttons {
+button {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
