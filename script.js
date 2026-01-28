@@ -4,9 +4,9 @@ const writeBtn = document.getElementById("writeBtn");
 
 // Navigation
 readBtn.addEventListener("click", () => {
-    window.location.href = "reading.html";
+    window.location.href = "short.html";
 });
 
 writeBtn.addEventListener("click", () => {
-    window.location.href = "writer.html";
+    window.location.href = "link.html";
 });
