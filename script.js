@@ -1,9 +1,12 @@
-function startReading() {
-    alert("📖 Reading page coming soon!");
-    // future: window.location.href = "read.html";
-}
+// Buttons
+const readBtn = document.getElementById("readBtn");
+const writeBtn = document.getElementById("writeBtn");
 
-function becomeWriter() {
-    alert("✍️ Writer signup coming soon!");
-    // future: window.location.href = "writer.html";
-}
+// Navigation
+readBtn.addEventListener("click", () => {
+    window.location.href = "reading.html";
+});
+
+writeBtn.addEventListener("click", () => {
+    window.location.href = "writer.html";
+});
