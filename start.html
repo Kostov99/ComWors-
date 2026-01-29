@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ComWors – Scroll Nahi, Smile Karo 😄</title>
+
+<link rel="stylesheet" href="start.css" />
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <h1 class="logo">📚 ComWors</h1>
+
+  <div class="lang-bar">
+    <button onclick="loadLanguage('hi')">हिंदी</button>
+    <button onclick="loadLanguage('en')">English</button>
+    <button onclick="loadLanguage('as')">অসমীয়া</button>
+    <button onclick="loadLanguage('hinglish')">Hinglish</button>
+  </div>
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search stories..."
+    onkeyup="searchStory()"
+  />
+</header>
+
+
+<!-- STORY LIST PAGE -->
+<main id="listPage" class="list-page"></main>
+
+
+<!-- READER PAGE -->
+<section id="readerPage" class="reader-page">
+
+  <div class="reader">
+
+    <div class="top">
+      <span id="storyNumber"></span>
+      <span id="readTime"></span>
+    </div>
+
+    <div class="story">
+      <h2 id="title"></h2>
+      <p id="content"></p>
+    </div>
+
+    <div class="bottom">
+      <button onclick="shareStory()">🔗 Share</button>
+      <button onclick="backToList()">🏠 Home</button>
+      <button onclick="nextStory()">➡ Next</button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- LANGUAGE DATA -->
+<script src="data-hi.js"></script>
+<script src="data-en.js"></script>
+<script src="data-as.js"></script>
+<script src="data-hinglish.js"></script>
+
+<!-- MAIN LOGIC -->
+<script src="start.js"></script>
+
+</body>
+</html>
