@@ -4,7 +4,7 @@ const writeBtn = document.getElementById("writeBtn");
 
 // Navigation
 readBtn.addEventListener("click", () => {
-    window.location.href = "short.html";
+    window.location.href = "start.html";
 });
 
 writeBtn.addEventListener("click", () => {
