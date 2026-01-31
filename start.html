@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComWors – Scroll Nahi, Smile Karo 😄</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ComWors – Scroll Nahi, Smile Karo 😄</title>
 
-  <link rel="stylesheet" href="start.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -14,13 +14,18 @@
   <h1 class="logo">📚 ComWors</h1>
 
   <div class="lang-bar">
-    <button data-lang="hi">हिंदी</button>
-    <button data-lang="en" class="active">English</button>
-    <button data-lang="as">অসমীয়া</button>
-    <button data-lang="hinglish">Hinglish</button>
+    <button onclick="loadLanguage('hin')">Hinglish</button>
+    <button onclick="loadLanguage('en')">English</button>
+    <button onclick="loadLanguage('hi')">हिंदी</button>
+    <button onclick="loadLanguage('as')">অসমীয়া</button>
   </div>
 
-  <input id="searchInput" type="text" placeholder="🔍 Search stories..." />
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Search stories..."
+    onkeyup="searchStory()"
+  />
 </header>
 
 <main id="listPage" class="list-page"></main>
@@ -39,19 +44,21 @@
     </div>
 
     <div class="bottom">
-      <button id="shareBtn">🔗 Share</button>
-      <button id="homeBtn">🏠 Home</button>
-      <button id="nextBtn">➡ Next</button>
+      <button onclick="shareStory()">🔗 Share</button>
+      <button onclick="backToList()">🏠 Home</button>
+      <button onclick="nextStory()">➡ Next</button>
     </div>
 
   </div>
 </section>
 
+<!-- DATA FILES -->
+<script src="data-hin.js"></script>
 <script src="data-en.js"></script>
 <script src="data-hi.js"></script>
 <script src="data-as.js"></script>
-<script src="data-hinglish.js"></script>
-<script src="start.js"></script>
+
+<script src="main.js"></script>
 
 </body>
 </html>
