@@ -1,124 +1,95 @@
 let currentStories = [];
 let currentIndex = 0;
 
-/* DOM READY */
-document.addEventListener("DOMContentLoaded", () => {
-
-  loadLanguage("en");
-
-  document.getElementById("searchInput")
-    .addEventListener("keyup", searchStory);
-
-  document.getElementById("shareBtn").onclick = shareStory;
-  document.getElementById("homeBtn").onclick = showList;
-  document.getElementById("nextBtn").onclick = nextStory;
-
-  document.querySelectorAll(".lang-bar button")
-    .forEach(btn => {
-      btn.onclick = () => {
-        document.querySelectorAll(".lang-bar button")
-          .forEach(b => b.classList.remove("active"));
-
-        btn.classList.add("active");
-        loadLanguage(btn.dataset.lang);
-      };
-    });
-});
-
-/* LANGUAGE */
-function loadLanguage(lang){
+/* Language loader */
+function loadLanguage(lang) {
   currentStories = window["stories_" + lang] || [];
   renderList();
 }
 
-/* LIST */
-function renderList(){
+/* Render cards */
+function renderList() {
   const list = document.getElementById("listPage");
   list.innerHTML = "";
 
-  currentStories.forEach((s,i)=>{
+  currentStories.forEach((story, i) => {
     const card = document.createElement("div");
     card.className = "story-card";
 
     card.innerHTML = `
-      <h3>${s.title}</h3>
-      <small>${getReadTime(s.content)}</small>
+      <h3>${story.title}</h3>
+      <small>${getReadTime(story.content)}</small>
     `;
 
-    card.onclick = ()=> openStory(i);
-
+    card.onclick = () => openStory(i);
     list.appendChild(card);
   });
 
   showList();
 }
 
-/* OPEN */
-function openStory(index){
+/* Open reader */
+function openStory(index) {
   currentIndex = index;
-  const story = currentStories[index];
+  const s = currentStories[index];
 
-  title.innerText = story.title;
-  content.innerText = story.content;
+  title.innerText = s.title;
+  content.innerText = s.content;
 
-  storyNumber.innerText =
-    `Story ${index+1}/${currentStories.length}`;
+  storyNumber.innerText = `Story ${index + 1}/${currentStories.length}`;
+  readTime.innerText = getReadTime(s.content);
 
-  readTime.innerText =
-    getReadTime(story.content);
-
-  listPage.style.display="none";
-  readerPage.style.display="block";
-
-  window.scrollTo(0,0);
+  listPage.style.display = "none";
+  readerPage.style.display = "block";
 }
 
-/* HOME */
-function showList(){
-  readerPage.style.display="none";
-  listPage.style.display="grid";
+/* Back */
+function backToList() {
+  showList();
 }
 
-/* NEXT */
-function nextStory(){
-  currentIndex = (currentIndex+1)%currentStories.length;
+function showList() {
+  readerPage.style.display = "none";
+  listPage.style.display = "grid";
+}
+
+/* Next */
+function nextStory() {
+  currentIndex = (currentIndex + 1) % currentStories.length;
   openStory(currentIndex);
 }
 
-/* SHARE */
-function shareStory(){
-  const story = currentStories[currentIndex];
+/* Share */
+function shareStory() {
+  const s = currentStories[currentIndex];
 
-  const url =
-    location.origin + location.pathname +
-    `?story=${currentIndex}`;
+  const text = `${s.title}\n\n${s.content.slice(0, 80)}...\n\nRead on ComWors 😄`;
 
-  const text = `${story.title}\n\nRead on ComWors 😄\n${url}`;
-
-  if(navigator.share){
-    navigator.share({text});
-  }else{
+  if (navigator.share) {
+    navigator.share({ text });
+  } else {
     navigator.clipboard.writeText(text);
     alert("Copied!");
   }
 }
 
-/* SEARCH */
-function searchStory(){
+/* Search */
+function searchStory() {
   const value = searchInput.value.toLowerCase();
 
-  document.querySelectorAll(".story-card")
-    .forEach((card,i)=>{
-      card.style.display =
-        currentStories[i].title
-        .toLowerCase()
-        .includes(value) ? "block":"none";
-    });
+  document.querySelectorAll(".story-card").forEach((card, i) => {
+    card.style.display =
+      currentStories[i].title.toLowerCase().includes(value)
+        ? "block"
+        : "none";
+  });
 }
 
-/* READ TIME */
-function getReadTime(text){
-  const words = text.match(/\w+/g)?.length || 0;
-  const min = Math.max(1, Math.ceil(words/200));
-  return `${min} min read`;
+/* Read time */
+function getReadTime(text) {
+  const words = text.split(" ").length;
+  return `${Math.ceil(words / 200)} min read`;
 }
+
+/* DEFAULT = Hinglish */
+loadLanguage("hin");
