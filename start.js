@@ -1,95 +1,94 @@
-let currentStories = [];
-let currentIndex = 0;
+let currentLang = "hi";
+let currentStories = stories_hi;
+let index = 0;
 
-/* Language loader */
 function loadLanguage(lang) {
-  currentStories = window["stories_" + lang] || [];
+  currentLang = lang;
+
+  if (lang === "hi") currentStories = stories_hi;
+  if (lang === "en") currentStories = stories_en;
+  if (lang === "as") currentStories = stories_as;
+  if (lang === "hinglish") currentStories = stories_hinglish;
+
+  backToList();
   renderList();
 }
 
-/* Render cards */
 function renderList() {
   const list = document.getElementById("listPage");
   list.innerHTML = "";
 
-  currentStories.forEach((story, i) => {
-    const card = document.createElement("div");
-    card.className = "story-card";
-
-    card.innerHTML = `
-      <h3>${story.title}</h3>
-      <small>${getReadTime(story.content)}</small>
+  currentStories.forEach((s, i) => {
+    list.innerHTML += `
+      <div class="story-card" onclick="openReader(${i})">
+        <h3>${s.title}</h3>
+        <p>⏱ ${s.time}</p>
+      </div>
     `;
-
-    card.onclick = () => openStory(i);
-    list.appendChild(card);
   });
-
-  showList();
 }
 
-/* Open reader */
-function openStory(index) {
-  currentIndex = index;
+function openReader(i) {
+  index = i;
+  document.getElementById("listPage").style.display = "none";
+  document.getElementById("readerPage").style.display = "flex";
+  loadStory();
+}
+
+function loadStory() {
+  const s = currentStories[index];
+  document.getElementById("title").innerText = s.title;
+  document.getElementById("content").innerText = s.content;
+  document.getElementById("readTime").innerText = "⏱ " + s.time;
+  document.getElementById("storyNumber").innerText = "Story " + (index + 1);
+}
+
+function nextStory() {
+  index = (index + 1) % currentStories.length;
+  loadStory();
+}
+
+function backToList() {
+  document.getElementById("readerPage").style.display = "none";
+  document.getElementById("listPage").style.display = "block";
+}
+
+function searchStory() {
+  const text = document.getElementById("searchInput").value.toLowerCase();
+  document.querySelectorAll(".story-card").forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(text)
+      ? "block" : "none";
+  });
+}
+
+function shareStory() {
+  const url =
+    window.location.origin +
+    window.location.pathname +
+    `?lang=${currentLang}&id=${index}`;
+
   const s = currentStories[index];
 
-  title.innerText = s.title;
-  content.innerText = s.content;
-
-  storyNumber.innerText = `Story ${index + 1}/${currentStories.length}`;
-  readTime.innerText = getReadTime(s.content);
-
-  listPage.style.display = "none";
-  readerPage.style.display = "block";
-}
-
-/* Back */
-function backToList() {
-  showList();
-}
-
-function showList() {
-  readerPage.style.display = "none";
-  listPage.style.display = "grid";
-}
-
-/* Next */
-function nextStory() {
-  currentIndex = (currentIndex + 1) % currentStories.length;
-  openStory(currentIndex);
-}
-
-/* Share */
-function shareStory() {
-  const s = currentStories[currentIndex];
-
-  const text = `${s.title}\n\n${s.content.slice(0, 80)}...\n\nRead on ComWors 😄`;
-
   if (navigator.share) {
-    navigator.share({ text });
+    navigator.share({
+      title: s.title,
+      text: s.content,
+      url: url
+    });
   } else {
-    navigator.clipboard.writeText(text);
-    alert("Copied!");
+    navigator.clipboard.writeText(url);
+    alert("Link copied:\n" + url);
   }
 }
 
-/* Search */
-function searchStory() {
-  const value = searchInput.value.toLowerCase();
+function loadFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
+  const id = params.get("id");
 
-  document.querySelectorAll(".story-card").forEach((card, i) => {
-    card.style.display =
-      currentStories[i].title.toLowerCase().includes(value)
-        ? "block"
-        : "none";
-  });
+  if (lang) loadLanguage(lang);
+  if (id !== null) setTimeout(() => openReader(parseInt(id)), 100);
 }
 
-/* Read time */
-function getReadTime(text) {
-  const words = text.split(" ").length;
-  return `${Math.ceil(words / 200)} min read`;
-}
-
-/* DEFAULT = Hinglish */
-loadLanguage("hin");
+renderList();
+loadFromURL();
