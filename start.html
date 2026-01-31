@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ComWors – Scroll Nahi, Smile Karo 😄</title>
-
-<link rel="stylesheet" href="start.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComWors</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="header">
-  <h1 class="logo">📚 ComWors</h1>
+<header>
+  <h1>📚 ComWors</h1>
 
+  <!-- Language Buttons -->
   <div class="lang-bar">
-    <button onclick="loadLanguage('hin')">Hinglish</button>
-    <button onclick="loadLanguage('en')">English</button>
     <button onclick="loadLanguage('hi')">हिंदी</button>
+    <button onclick="loadLanguage('en')">English</button>
     <button onclick="loadLanguage('as')">অসমীয়া</button>
+    <button onclick="loadLanguage('hinglish')">Hinglish</button>
   </div>
 
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="🔍 Search stories..."
-    onkeyup="searchStory()"
-  />
+  <input type="text" id="searchInput" placeholder="Search stories..." onkeyup="searchStory()">
 </header>
 
-<main id="listPage" class="list-page"></main>
+<div id="listPage"></div>
 
-<section id="readerPage" class="reader-page">
+<div id="readerPage">
   <div class="reader">
-
     <div class="top">
       <span id="storyNumber"></span>
       <span id="readTime"></span>
@@ -48,17 +42,17 @@
       <button onclick="backToList()">🏠 Home</button>
       <button onclick="nextStory()">➡ Next</button>
     </div>
-
   </div>
-</section>
+</div>
 
-<!-- DATA FILES -->
-<script src="data-hin.js"></script>
-<script src="data-en.js"></script>
+<!-- LANGUAGE DATA FILES -->
 <script src="data-hi.js"></script>
+<script src="data-en.js"></script>
 <script src="data-as.js"></script>
+<script src="data-hinglish.js"></script>
 
-<script src="start.js"></script>
+<!-- MAIN LOGIC -->
+<script src="main.js"></script>
 
 </body>
 </html>
