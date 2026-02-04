@@ -1,109 +1,169 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
+/* ===== GLOBAL ===== */
 body {
-  background: linear-gradient(135deg, #ffe0b2, #fff3e0);
-  color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff8e1;
 }
 
-/* HEADER */
-.header {
-  position: sticky;
-  top: 0;
-  background: white;
-  padding: 14px;
+/* ===== HEADER ===== */
+header {
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 15px;
+  background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.logo {
-  margin-bottom: 8px;
+header h1 {
+  margin: 5px 0 10px;
 }
 
+/* ===== LANGUAGE BAR ===== */
 .lang-bar {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .lang-bar button {
-  padding: 7px 12px;
-  border-radius: 10px;
+  margin: 4px;
+  padding: 6px 14px;
   border: none;
+  border-radius: 20px;
   background: #ff9800;
   color: white;
   cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
-#searchInput {
-  width: 95%;
+.lang-bar button:hover {
+  background: #f57c00;
+}
+
+/* ===== SEARCH ===== */
+header input {
+  width: 80%;
   padding: 10px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+  font-size: 15px;
+  outline: none;
 }
 
-/* STORY LIST */
-.list-page {
-  padding: 20px;
-  display: grid;
-  gap: 14px;
-}
-
+/* ===== STORY LIST ===== */
 .story-card {
-  background: white;
-  padding: 16px;
-  border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  background: #e3f2fd;
+  width: 85%;
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 15px;
   cursor: pointer;
-  transition: 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
 }
 
 .story-card:hover {
-  transform: translateY(-3px);
+  transform: scale(1.02);
 }
 
-/* READER */
-.reader-page {
+.story-card h3 {
+  margin: 0 0 8px;
+}
+
+/* ===== READER PAGE ===== */
+#readerPage {
   display: none;
-  padding: 20px;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffe0b2, #ffccbc);
 }
 
 .reader {
   background: white;
+  width: 90%;
+  max-width: 500px;
+  height: 85vh;
   padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
+/* ===== READER TOP ===== */
 .top {
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  margin-bottom: 12px;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+/* ===== STORY CONTENT ===== */
+.story {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.story h2 {
+  color: #ff5722;
+  margin-bottom: 10px;
 }
 
 .story p {
-  line-height: 1.8;
-  white-space: pre-line;
+  font-size: 17px;
+  line-height: 1.6;
 }
 
+/* ===== BOTTOM BUTTON BAR ===== */
 .bottom {
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+  padding-top: 12px;
 }
 
+/* ===== COMMON BUTTON STYLE ===== */
 .bottom button {
-  padding: 8px 12px;
-  border-radius: 12px;
+  flex: 1;
+  padding: 10px 12px;
   border: none;
-  background: #ff9800;
+  border-radius: 18px;
   color: white;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  transition: all 0.25s ease;
+}
+
+.bottom button:active {
+  transform: scale(0.95);
+}
+
+/* ===== SHARE BUTTON ===== */
+.bottom button:nth-child(1) {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+}
+
+.bottom button:nth-child(1):hover {
+  background: linear-gradient(135deg, #1e88e5, #1565c0);
+}
+
+/* ===== HOME BUTTON ===== */
+.bottom button:nth-child(2) {
+  background: linear-gradient(135deg, #66bb6a, #388e3c);
+}
+
+.bottom button:nth-child(2):hover {
+  background: linear-gradient(135deg, #388e3c, #1b5e20);
+}
+
+/* ===== NEXT BUTTON ===== */
+.bottom button:nth-child(3) {
+  background: linear-gradient(135deg, #ff7043, #e64a19);
+}
+
+.bottom button:nth-child(3):hover {
+  background: linear-gradient(135deg, #e64a19, #bf360c);
 }
